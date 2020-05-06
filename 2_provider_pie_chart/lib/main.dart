@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
               padding: const EdgeInsets.all(32),
               child: MySlider(),
             ),
-            Text('data')
           ],
         ),
       ),
