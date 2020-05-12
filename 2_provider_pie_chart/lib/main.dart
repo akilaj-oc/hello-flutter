@@ -1,33 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'src/chart.dart';
-import 'src/slider.dart';
+import 'package:provider_pie_chart/src/home.dart';
+import 'package:provider_pie_chart/src/viewmodel/schedule.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Time Spent'),
-          leading: Icon(Icons.menu),
-        ),
-        body: Column(
-          children: <Widget>[
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(32),
-                child: MyChart(),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(32),
-              child: MySlider(),
-            ),
-          ],
-        ),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => MySchedule(),
+        )
+      ],
+      child: MaterialApp(
+        title: 'FProvider Pie Chart',
+        routes: {
+          '/': (context) => Home(),
+        },
       ),
     );
   }
